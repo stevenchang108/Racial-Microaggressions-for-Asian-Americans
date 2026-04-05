@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Racial Microaggressions and the Asian American Experience</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --accent: #38bdf8;
+    --accent2: #a78bfa;
+    --accent3: #fb923c;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #334155;
+    --danger: #f87171;
+    --success: #34d399;
+  }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .slide {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 4vh 6vw;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .slide.active { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+    text-align: center;
+  }
+
+  h3 {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 600;
+    color: var(--accent2);
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+    color: var(--muted);
+    text-align: center;
+    max-width: 700px;
+    line-height: 1.5;
+  }
+
+  .content {
+    max-width: 1000px;
+    width: 100%;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-width: 1100px;
+  }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-width: 1100px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+
+  .card p, .content p {
+    font-size: clamp(0.8rem, 1.4vw, 1rem);
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .card .number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .badge-blue { background: rgba(56,189,248,0.15); color: var(--accent); }
+  .badge-purple { background: rgba(167,139,250,0.15); color: var(--accent2); }
+  .badge-orange { background: rgba(251,146,60,0.15); color: var(--accent3); }
+  .badge-red { background: rgba(248,113,113,0.15); color: var(--danger); }
+  .badge-green { background: rgba(52,211,153,0.15); color: var(--success); }
+
+  blockquote {
+    border-left: 3px solid var(--accent2);
+    padding: 0.75rem 1rem;
+    background: rgba(167,139,250,0.08);
+    border-radius: 0 8px 8px 0;
+    margin: 0.75rem 0;
+    font-style: italic;
+    font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+    color: var(--text);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.6rem;
+    font-size: clamp(0.8rem, 1.4vw, 1rem);
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .highlight {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .highlight-purple { color: var(--accent2); font-weight: 600; }
+  .highlight-orange { color: var(--accent3); font-weight: 600; }
+
+  .taxonomy-row {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1100px;
+  }
+
+  .taxonomy-col {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .taxonomy-col h3 { text-align: center; margin-bottom: 0.75rem; }
+
+  .theme-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .theme-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .example-box {
+    background: rgba(56,189,248,0.06);
+    border: 1px solid rgba(56,189,248,0.15);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .counterpoint-box {
+    background: rgba(52,211,153,0.06);
+    border: 1px solid rgba(52,211,153,0.15);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .person-box {
+    background: rgba(167,139,250,0.06);
+    border: 1px solid rgba(167,139,250,0.15);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .dilemma-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dilemma-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--danger);
+  }
+
+  .dilemma-card p {
+    padding-left: 0.5rem;
+    font-size: clamp(0.8rem, 1.3vw, 0.95rem);
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .dilemma-card h3 { padding-left: 0.5rem; }
+
+  /* Progress bar */
+  .progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.3s ease;
+    z-index: 100;
+  }
+
+  /* Navigation */
+  .nav {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 0.5rem 1.25rem;
+    z-index: 100;
+  }
+
+  .nav button {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .nav button:hover { color: var(--accent); background: rgba(56,189,248,0.1); }
+  .nav button:disabled { opacity: 0.3; cursor: default; }
+  .nav button:disabled:hover { color: var(--muted); background: none; }
+
+  .nav .page {
+    font-size: 0.85rem;
+    color: var(--muted);
+    min-width: 60px;
+    text-align: center;
+  }
+
+  /* Keyboard hint */
+  .hint {
+    position: fixed;
+    bottom: 0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: var(--border);
+  }
+
+  .separator {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+    margin: 1rem auto;
+  }
+
+  .impact-stat {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .impact-stat .big {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+  }
+
+  .flow-step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+
+  .flow-step.active-step {
+    border-color: var(--accent);
+    background: rgba(56,189,248,0.1);
+  }
+
+  .arrow { color: var(--accent); font-size: 1.2rem; }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .taxonomy-row { flex-direction: column; }
+    .slide { padding: 3vh 5vw; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- SLIDE 1: Title -->
+<div class="slide active" id="slide-1">
+  <h1>Racial Microaggressions and<br>the Asian American Experience</h1>
+  <div class="separator"></div>
+  <p class="subtitle" style="margin-bottom: 1rem;">
+    Derald Wing Sue, Jennifer Bucceri, Annie I. Lin, Kevin L. Nadal, & Gina C. Torino<br>
+    <span style="color: var(--accent);">Teachers College, Columbia University</span>
+  </p>
+  <p class="subtitle" style="font-size: 0.9rem;">
+    A focus group study identifying 8 microaggressive themes experienced by Asian Americans &mdash; exploring the forms, messages, and psychological impact of subtle racism.
+  </p>
+</div>
+
+<!-- SLIDE 2: What Are Microaggressions? -->
+<div class="slide" id="slide-2">
+  <h2>What Are Racial Microaggressions?</h2>
+  <div class="separator"></div>
+  <blockquote style="max-width: 800px; margin: 1rem auto;">
+    "Brief and commonplace daily verbal, behavioral and environmental indignities, whether intentional or unintentional, that communicate hostile, derogatory or negative racial slights and insults."
+    <br><span style="color: var(--muted); font-size: 0.85rem;">&mdash; Sue et al. (2006)</span>
+  </blockquote>
+  <div class="grid-3" style="margin-top: 1.5rem;">
+    <div class="card">
+      <span class="badge badge-red">Microassault</span>
+      <h3 style="color: var(--danger);">Deliberate</h3>
+      <p>Explicit racial derogations &mdash; slurs, behavioral discrimination, offensive displays. Conscious and intentional.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;"><em>Example: Using slurs like "Chink" or "Jap"</em></p>
+    </div>
+    <div class="card">
+      <span class="badge badge-orange">Microinsult</span>
+      <h3 style="color: var(--accent3);">Unconscious</h3>
+      <p>Behavioral or verbal remarks conveying rudeness or demeaning a person's racial identity. Unintentional.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;"><em>Example: "You people always do well in school"</em></p>
+    </div>
+    <div class="card">
+      <span class="badge badge-purple">Microinvalidation</span>
+      <h3 style="color: var(--accent2);">Unconscious</h3>
+      <p>Actions that exclude, negate, or nullify the thoughts, feelings, or reality of a person of color.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;"><em>Example: "You speak such good English!"</em></p>
+    </div>
+  </div>
+  <p class="subtitle" style="margin-top: 1.25rem; font-size: 0.85rem;">
+    This study focuses on <span class="highlight">microinsults</span> and <span class="highlight-purple">microinvalidations</span> &mdash; the unconscious, unintentional forms.
+  </p>
+</div>
+
+<!-- SLIDE 3: The Carbon Monoxide Analogy -->
+<div class="slide" id="slide-3">
+  <h2>Why This Matters</h2>
+  <div class="separator"></div>
+  <blockquote style="max-width: 750px; margin: 1rem auto;">
+    "This contemporary form of racism has been likened to carbon monoxide &mdash; invisible, but potentially lethal."
+    <br><span style="color: var(--muted); font-size: 0.85rem;">&mdash; Sue & Sue (2003); Tinsley-Jones (2003)</span>
+  </blockquote>
+  <div class="grid-2" style="margin-top: 1.5rem;">
+    <div class="card">
+      <h3 style="color: var(--danger);">The Problem</h3>
+      <ul>
+        <li>Asian Americans are viewed as a <span class="highlight-orange">"model minority"</span> who are "immune" to racism</li>
+        <li>Racial issues are often dichotomized in <span class="highlight">Black and White</span> terms</li>
+        <li>Research findings for other groups are assumed to apply to Asian Americans</li>
+        <li>Higher discrimination correlates with lower happiness, self-esteem, and life satisfaction</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="color: var(--success);">The Gap</h3>
+      <ul>
+        <li>At the time, microaggression research was almost entirely focused on the <span class="highlight">Black-White dynamic</span></li>
+        <li>Only <span class="highlight-purple">one prior study</span> specifically focused on microaggressions (Solorzano et al., 2000, on African Americans)</li>
+        <li>Asian Americans experience <span class="highlight-orange">qualitatively different</span> forms of subtle racism</li>
+        <li>Cumulative effects may result in "diminished mortality, augmented morbidity, and flattened confidence"</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: Study Design -->
+<div class="slide" id="slide-4">
+  <h2>Study Design</h2>
+  <div class="separator"></div>
+  <div class="flow-arrow">
+    <div class="flow-step">Focus Groups (n=10)</div>
+    <span class="arrow">&rarr;</span>
+    <div class="flow-step">Semi-structured Interviews</div>
+    <span class="arrow">&rarr;</span>
+    <div class="flow-step">Qualitative Coding</div>
+    <span class="arrow">&rarr;</span>
+    <div class="flow-step">Consensus Review</div>
+    <span class="arrow">&rarr;</span>
+    <div class="flow-step active-step">8 Themes Identified</div>
+  </div>
+  <div class="grid-2" style="margin-top: 1.5rem;">
+    <div class="card">
+      <h3>Participants</h3>
+      <ul>
+        <li><span class="highlight">10</span> self-identified Asian Americans in 2 focus groups</li>
+        <li>9 women, 1 man &mdash; mostly mid-20s</li>
+        <li>4 Chinese, 2 Filipino, 1 Korean, 1 Japanese/German, 1 Asian Indian/European American</li>
+        <li>All born/raised in the U.S.; all agreed racism exists against Asian Americans</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Method</h3>
+      <ul>
+        <li>8 open-ended questions about subtle discrimination experiences</li>
+        <li>Both facilitators were <span class="highlight">Asian American</span> to minimize hesitancy</li>
+        <li>Modified <span class="highlight-purple">Consensual Qualitative Research</span> (CQR) procedure</li>
+        <li>Team of 10 doctoral/masters students + senior author as auditor</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: 8 Themes Overview -->
+<div class="slide" id="slide-5">
+  <h2>Eight Microaggressive Themes</h2>
+  <div class="separator"></div>
+  <div class="grid-4">
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.3rem;">&#127758;</div>
+      <span class="badge badge-purple">Microinvalidation</span>
+      <h3 style="font-size: 0.95rem;">1. Alien in Own Land</h3>
+      <p style="font-size: 0.8rem;">Assumption that Asian Americans are foreigners</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.3rem;">&#129504;</div>
+      <span class="badge badge-orange">Microinsult</span>
+      <h3 style="font-size: 0.95rem;">2. Ascription of Intelligence</h3>
+      <p style="font-size: 0.8rem;">Assigning intelligence based on race</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.3rem;">&#10060;</div>
+      <span class="badge badge-purple">Microinvalidation</span>
+      <h3 style="font-size: 0.95rem;">3. Denial of Racial Reality</h3>
+      <p style="font-size: 0.8rem;">Dismissing experiences of discrimination</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.3rem;">&#128101;</div>
+      <span class="badge badge-orange">Microinsult</span>
+      <h3 style="font-size: 0.95rem;">4. Exoticization of Women</h3>
+      <p style="font-size: 0.8rem;">Asian women reduced to exotic stereotypes</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.3rem;">&#128100;</div>
+      <span class="badge badge-purple">Microinvalidation</span>
+      <h3 style="font-size: 0.95rem;">5. Invalidation of Interethnic Diff.</h3>
+      <p style="font-size: 0.8rem;">"All Asians look alike"</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.3rem;">&#128483;</div>
+      <span class="badge badge-orange">Microinsult</span>
+      <h3 style="font-size: 0.95rem;">6. Pathologizing Culture</h3>
+      <p style="font-size: 0.8rem;">Cultural values seen as deficits</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.3rem;">&#9878;</div>
+      <span class="badge badge-orange">Microinsult</span>
+      <h3 style="font-size: 0.95rem;">7. Second-Class Citizen</h3>
+      <p style="font-size: 0.8rem;">Treated as lesser or inferior</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.3rem;">&#128065;</div>
+      <span class="badge badge-purple">Microinvalidation</span>
+      <h3 style="font-size: 0.95rem;">8. Invisibility</h3>
+      <p style="font-size: 0.8rem;">Overlooked in racial discourse</p>
+    </div>
+  </div>
+  <p class="subtitle" style="margin-top: 1rem; font-size: 0.85rem;">
+    4 themes overlapped with the original taxonomy; <span class="highlight">4 were newly identified</span> for Asian Americans specifically.
+  </p>
+</div>
+
+<!-- SLIDE 6: Theme 1 - Alien in Own Land -->
+<div class="slide" id="slide-6">
+  <div class="theme-header">
+    <div class="theme-icon" style="background: rgba(167,139,250,0.15);">&#127758;</div>
+    <div>
+      <span class="badge badge-purple">Theme 1 &middot; Microinvalidation</span>
+      <h2 style="text-align: left;">Alien in Own Land</h2>
+    </div>
+  </div>
+  <div class="content">
+    <p style="color: var(--text); margin-bottom: 1rem; font-size: clamp(0.9rem, 1.5vw, 1.05rem);">
+      The assumption that all Asian Americans are <span class="highlight">foreigners or foreign-born</span>, regardless of how many generations their family has been in the U.S.
+    </p>
+    <div class="grid-2">
+      <div>
+        <div class="example-box">
+          <h3 style="font-size: 0.9rem; color: var(--accent);">Common Expressions</h3>
+          <ul>
+            <li>"Where are you <em>really</em> from?"</li>
+            <li>"Where were you born?"</li>
+            <li>"You speak good English!"</li>
+            <li>A customer speaking Japanese to a Chinese American worker</li>
+          </ul>
+        </div>
+        <div class="example-box" style="margin-top: 0.75rem;">
+          <h3 style="font-size: 0.9rem; color: var(--accent);">Hidden Message</h3>
+          <p>You are different, less than, and could not possibly be a "real" American. Research confirms: White Americans implicitly equate "White" with "American" (DeVos & Banaji, 2005).</p>
+        </div>
+      </div>
+      <div>
+        <div class="counterpoint-box">
+          <h3 style="font-size: 0.9rem; color: var(--success);">How to Respond</h3>
+          <p>Have a rehearsed, calm redirect ready &mdash; e.g., <strong>"I'm from Ohio."</strong> Preparation neutralizes the prolonged rumination and distress.</p>
+        </div>
+        <div class="person-box" style="margin-top: 0.75rem;">
+          <h3 style="font-size: 0.9rem; color: var(--accent2);">How Others Got Past It</h3>
+          <ul>
+            <li><span class="highlight-purple">Eddie Huang</span> &mdash; refused the terms of the question; asserted hybrid American identity through food and culture</li>
+            <li><span class="highlight-purple">Cathy Park Hong</span> &mdash; named the emotional residue as "minor feelings" and made articulating them a form of resistance</li>
+            <li><span class="highlight-purple">Erika Lee</span> &mdash; traced the trope to the Chinese Exclusion Act of 1882; historical literacy as armor</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Theme 2 - Ascription of Intelligence -->
+<div class="slide" id="slide-7">
+  <div class="theme-header">
+    <div class="theme-icon" style="background: rgba(251,146,60,0.15);">&#129504;</div>
+    <div>
+      <span class="badge badge-orange">Theme 2 &middot; Microinsult</span>
+      <h2 style="text-align: left;">Ascription of Intelligence</h2>
+    </div>
+  </div>
+  <div class="content">
+    <p style="color: var(--text); margin-bottom: 1rem; font-size: clamp(0.9rem, 1.5vw, 1.05rem);">
+      A degree of intelligence is <span class="highlight-orange">assigned to Asian Americans based on race</span> &mdash; "positive" stereotypes that still cause real harm.
+    </p>
+    <div class="grid-2">
+      <div>
+        <div class="example-box">
+          <h3 style="font-size: 0.9rem; color: var(--accent);">Common Expressions</h3>
+          <ul>
+            <li>"You're really good at math"</li>
+            <li>"You people always do well in school"</li>
+            <li>"If I see lots of Asian students in my class, I know it's going to be hard"</li>
+          </ul>
+        </div>
+        <div class="example-box" style="margin-top: 0.75rem;">
+          <h3 style="font-size: 0.9rem; color: var(--accent);">Hidden Harm</h3>
+          <ul>
+            <li><span class="highlight">Pressure</span> to conform to a stereotype they may not endorse</li>
+            <li><span class="highlight">Heavier workload</span> &mdash; a Korean woman's coworkers routed all math questions to her</li>
+            <li><span class="highlight">Interracial tension</span> &mdash; implies other POC are less intelligent</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="counterpoint-box">
+          <h3 style="font-size: 0.9rem; color: var(--success);">Key Insight</h3>
+          <p>Stereotypes that seem "positive" still cause harm on both sides. Don't assign tasks or expectations based on racial stereotypes.</p>
+        </div>
+        <div class="person-box" style="margin-top: 0.75rem;">
+          <h3 style="font-size: 0.9rem; color: var(--accent2);">How Others Got Past It</h3>
+          <ul>
+            <li><span class="highlight-purple">Jeremy Lin</span> &mdash; passed over by every D-I program despite a standout career; let performance speak, then named the bias directly ("deceptively quick")</li>
+            <li><span class="highlight-purple">Mindy Kaling</span> &mdash; treated occupation as rebellion; made intelligence incidental, not defining, in <em>The Mindy Project</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Theme 3 - Denial of Racial Reality -->
+<div class="slide" id="slide-8">
+  <div class="theme-header">
+    <div class="theme-icon" style="background: rgba(167,139,250,0.15);">&#10060;</div>
+    <div>
+      <span class="badge badge-purple">Theme 3 &middot; Microinvalidation</span>
+      <h2 style="text-align: left;">Denial of Racial Reality</h2>
+    </div>
+  </div>
+  <div class="content">
+    <p style="color: var(--text); margin-bottom: 1rem; font-size: clamp(0.9rem, 1.5vw, 1.05rem);">
+      Invalidating experiences of discrimination by claiming Asian Americans don't face racism &mdash; often via the <span class="highlight-orange">"model minority" myth</span>.
+    </p>
+    <div class="grid-2">
+      <div>
+        <div class="example-box">
+          <h3 style="font-size: 0.9rem; color: var(--accent);">Case Study</h3>
+          <p>A Vietnamese American male was told <strong>"Asians are the new Whites."</strong> This dismissed his experiences, suggested Asians face no discrimination, and reinforced the model minority myth.</p>
+        </div>
+        <blockquote style="font-size: 0.9rem;">The "compliment" that Asians are more successful than other POC carries the negating message that <span class="highlight">Asians do not experience racism</span> &mdash; denying their experiential reality.</blockquote>
+      </div>
+      <div>
+        <div class="counterpoint-box">
+          <h3 style="font-size: 0.9rem; color: var(--success);">Challenge Directly</h3>
+          <p>The model minority myth is used to ignore discrimination, argue hard work alone overcomes systemic barriers, and create resentment between racial groups.</p>
+        </div>
+        <div class="person-box" style="margin-top: 0.75rem;">
+          <h3 style="font-size: 0.9rem; color: var(--accent2);">How Others Got Past It</h3>
+          <ul>
+            <li><span class="highlight-purple">Frank Wu</span> &mdash; reframed the myth as a "racial bribe" used to discipline Black and Latino communities, not to praise Asian Americans</li>
+            <li><span class="highlight-purple">Jeff Chang</span> &mdash; documented how the myth was used after the 1992 LA riots to pit Korean and Black Americans against each other</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: Theme 4 - Exoticization -->
+<div class="slide" id="slide-9">
+  <div class="theme-header">
+    <div class="theme-icon" style="background: rgba(251,146,60,0.15);">&#128101;</div>
+    <div>
+      <span class="badge badge-orange">Theme 4 &middot; Microinsult</span>
+      <h2 style="text-align: left;">Exoticization of Asian American Women</h2>
+    </div>
+  </div>
+  <div class="content">
+    <p style="color: var(--text); margin-bottom: 1rem; font-size: clamp(0.9rem, 1.5vw, 1.05rem);">
+      Asian American women are reduced to <span class="highlight-orange">exotic stereotypes</span> &mdash; sexual objects, domestic servants, and passive companions.
+    </p>
+    <div class="grid-2">
+      <div>
+        <blockquote style="font-size: 0.9rem;">
+          "White men believe that Asian women are great girlfriends, wait hand and foot on men, and don't back-talk. Asian women have beautiful skin and are just sexy."
+          <br><span style="color: var(--muted); font-size: 0.8rem;">&mdash; Chinese American participant</span>
+        </blockquote>
+        <blockquote style="font-size: 0.9rem; margin-top: 0.5rem;">
+          "The continual subjugation of Asian American women to roles of sexual objects ultimately equates our identities to that of <span class="highlight">passive companions to White men</span>."
+        </blockquote>
+      </div>
+      <div>
+        <div class="counterpoint-box">
+          <h3 style="font-size: 0.9rem; color: var(--success);">Name It</h3>
+          <p>Name fetishizing language as <strong>objectification, not flattery</strong>. Men openly disclosing "Asian fetishes" as if it were a compliment; bystander silence reinforces that framing.</p>
+        </div>
+        <div class="person-box" style="margin-top: 0.75rem;">
+          <h3 style="font-size: 0.9rem; color: var(--accent2);">How Others Got Past It</h3>
+          <ul>
+            <li><span class="highlight-purple">Ali Wong</span> &mdash; used grotesque overcorrection in <em>Baby Cobra</em> to directly invert the "lotus blossom" trope</li>
+            <li><span class="highlight-purple">Constance Wu</span> &mdash; chose Jessica Huang in <em>Fresh Off the Boat</em> because the character was abrasive, ambitious, not sexually available to a white male gaze</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: Themes 5 & 6 -->
+<div class="slide" id="slide-10">
+  <div class="grid-2">
+    <div class="card" style="display: flex; flex-direction: column;">
+      <div class="theme-header">
+        <div class="theme-icon" style="background: rgba(167,139,250,0.15); width: 40px; height: 40px; font-size: 1.2rem;">&#128100;</div>
+        <div>
+          <span class="badge badge-purple">Theme 5</span>
+          <h3 style="font-size: 1.1rem;">Invalidation of Interethnic Differences</h3>
+        </div>
+      </div>
+      <div class="example-box">
+        <p><strong>"All Asians look alike"</strong> &mdash; "Are you Chinese?" said to a Filipino American. "Oh, my ex was Chinese" said to make a connection.</p>
+      </div>
+      <p style="margin-top: 0.5rem;">Message: All Asian Americans are alike, and differences between groups <span class="highlight-purple">do not exist or matter</span>.</p>
+      <div class="person-box" style="margin-top: auto; margin-top: 0.75rem;">
+        <ul>
+          <li><span class="highlight-purple">Viet Thanh Nguyen</span> &mdash; insists on historical specificity of the Vietnamese American experience</li>
+          <li><span class="highlight-purple">Margaret Cho</span> &mdash; exposed how the industry told her she was "too Asian" and then "not Asian enough"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="display: flex; flex-direction: column;">
+      <div class="theme-header">
+        <div class="theme-icon" style="background: rgba(251,146,60,0.15); width: 40px; height: 40px; font-size: 1.2rem;">&#128483;</div>
+        <div>
+          <span class="badge badge-orange">Theme 6</span>
+          <h3 style="font-size: 1.1rem;">Pathologizing Cultural Values</h3>
+        </div>
+      </div>
+      <div class="example-box">
+        <p>Grading based on <strong>verbal participation</strong> penalizes Asian cultural values emphasizing silence. A Vietnamese American was <strong>teased for using chopsticks</strong> &mdash; "the American way" is forks and knives.</p>
+      </div>
+      <p style="margin-top: 0.5rem;">Message: Cultural values other than the White majority's are <span class="highlight-orange">deficits or indicators of inferiority</span>.</p>
+      <div class="person-box" style="margin-top: auto; margin-top: 0.75rem;">
+        <ul>
+          <li><span class="highlight-purple">Jane Hyun</span> &mdash; documented the "Bamboo Ceiling" and strategic code-switching as a response</li>
+          <li><span class="highlight-purple">Amy Tan</span> &mdash; reframed "broken" English as evidence of multilingual complexity, not cognitive deficit</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Themes 7 & 8 -->
+<div class="slide" id="slide-11">
+  <div class="grid-2">
+    <div class="card" style="display: flex; flex-direction: column;">
+      <div class="theme-header">
+        <div class="theme-icon" style="background: rgba(251,146,60,0.15); width: 40px; height: 40px; font-size: 1.2rem;">&#9878;</div>
+        <div>
+          <span class="badge badge-orange">Theme 7</span>
+          <h3 style="font-size: 1.1rem;">Second-Class Citizenship</h3>
+        </div>
+      </div>
+      <div class="example-box">
+        <p>A Korean American's <strong>wine selection was given to White friends</strong> to taste. An Asian family of 8 was <strong>seated in the back</strong> despite open tables elsewhere.</p>
+      </div>
+      <p style="margin-top: 0.5rem;">Message: Asian Americans are <span class="highlight-orange">not deserving of good service</span> and are lesser than White counterparts.</p>
+      <div class="person-box" style="margin-top: auto; margin-top: 0.75rem;">
+        <ul>
+          <li><span class="highlight-purple">Patsy Mink</span> &mdash; first woman of color in Congress; co-authored Title IX to structurally dismantle barriers</li>
+          <li><span class="highlight-purple">George Takei</span> &mdash; tells the internment story relentlessly so that second-class citizenship cannot be forgotten</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="display: flex; flex-direction: column;">
+      <div class="theme-header">
+        <div class="theme-icon" style="background: rgba(167,139,250,0.15); width: 40px; height: 40px; font-size: 1.2rem;">&#128065;</div>
+        <div>
+          <span class="badge badge-purple">Theme 8</span>
+          <h3 style="font-size: 1.1rem;">Invisibility</h3>
+        </div>
+      </div>
+      <div class="example-box">
+        <p>"Race dialogues are very <strong>Black and White</strong> &mdash; there's a huge Asian population and where do we fit?" An Asian American on a committee was told they needed <strong>"a person of color"</strong> appointed.</p>
+      </div>
+      <p style="margin-top: 0.5rem;">Message: Asians are <span class="highlight-purple">not an ethnic minority group</span>, experience little discrimination, and their concerns are unimportant.</p>
+      <div class="person-box" style="margin-top: auto; margin-top: 0.75rem;">
+        <ul>
+          <li><span class="highlight-purple">Steven Yeun</span> &mdash; sought projects centering Asian American interiority; <em>Minari</em> is about a family's inner life</li>
+          <li><span class="highlight-purple">Sandra Oh</span> &mdash; named the internalization publicly: even a successful actress had absorbed the message that Asian women are not leads</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 12: The Psychological Dilemmas -->
+<div class="slide" id="slide-12">
+  <h2>The Psychological Dilemmas</h2>
+  <p class="subtitle" style="margin-bottom: 1.5rem;">Participants described a recurring "catch-22" when encountering microaggressions</p>
+  <div class="grid-2" style="max-width: 1000px;">
+    <div class="dilemma-card">
+      <h3 style="color: var(--danger);">1. "Did that really happen?"</h3>
+      <p>Difficult to determine whether a microaggression occurred. Am I being oversensitive? Considerable <span class="highlight">psychic energy</span> spent discerning motives &mdash; often easier to deal with overt bias than this "guessing game."</p>
+    </div>
+    <div class="dilemma-card">
+      <h3 style="color: var(--danger);">2. "They didn't mean it"</h3>
+      <p>Most microaggressions came from <span class="highlight">peers, friends, or authority figures</span>. Participants found themselves "making excuses" for friends &mdash; rationalizing away biases and denying their own racial reality.</p>
+    </div>
+    <div class="dilemma-card">
+      <h3 style="color: var(--danger);">3. "Should I say something?"</h3>
+      <p>Severe conflict about whether to respond. Pointing it out generally resulted in <span class="highlight">denial, defensiveness, and damaged relationships</span>. Many had no recourse other than to "stew on it" &mdash; especially angry at themselves later for not having a comeback.</p>
+    </div>
+    <div class="dilemma-card">
+      <h3 style="color: var(--danger);">4. "Now I look paranoid"</h3>
+      <p>Responding with anger or confrontation <span class="highlight">made the victim appear "paranoid"</span> or suggest they had a personal problem. Not responding led to prolonged internal turmoil. A no-win situation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 13: Model Minority Myth -->
+<div class="slide" id="slide-13">
+  <h2>The Model Minority Myth</h2>
+  <p class="subtitle" style="margin-bottom: 1.25rem;">A thread woven through nearly every theme in this study</p>
+  <div class="content">
+    <div class="grid-3">
+      <div class="card" style="border-top: 3px solid var(--danger);">
+        <h3 style="color: var(--danger); font-size: 0.95rem;">Ignoring Discrimination</h3>
+        <p>When endorsed, the myth becomes a justifiable reason to <strong>ignore discrimination</strong> against Asian Americans and neglect them in research and intervention programs.</p>
+      </div>
+      <div class="card" style="border-top: 3px solid var(--accent3);">
+        <h3 style="color: var(--accent3); font-size: 0.95rem;">Minimizing Systemic Racism</h3>
+        <p>Used to reaffirm belief in meritocracy &mdash; "any group can succeed if they work hard enough." This <strong>minimizes racism</strong> and societal oppression as factors in outcomes.</p>
+      </div>
+      <div class="card" style="border-top: 3px solid var(--accent2);">
+        <h3 style="color: var(--accent2); font-size: 0.95rem;">Fostering Interethnic Conflict</h3>
+        <p>Creates <strong>hard feelings between Asian Americans and other groups of color</strong>. The "smart Asian" stereotype implies other POC are less intelligent.</p>
+      </div>
+    </div>
+    <blockquote style="margin-top: 1.25rem; max-width: 900px;">
+      "Despite the long documented history of racism toward Asian Americans, there has been a lack of attention paid to prejudice and discrimination directed against them &mdash; denied rights of citizenship, forbidden to own land, and incarcerated in internment camps."
+    </blockquote>
+  </div>
+</div>
+
+<!-- SLIDE 14: New vs. Original Taxonomy -->
+<div class="slide" id="slide-14">
+  <h2>Expanding the Taxonomy</h2>
+  <p class="subtitle" style="margin-bottom: 1.25rem;">Comparing this study's findings with Sue et al.'s (2006) original taxonomy</p>
+  <div class="taxonomy-row">
+    <div class="taxonomy-col">
+      <h3 style="color: var(--success);">Overlapping Themes (4)</h3>
+      <p style="font-size: 0.85rem; text-align: center; color: var(--muted); margin-bottom: 0.75rem;">Found in both the original taxonomy and this study</p>
+      <ul>
+        <li><span class="highlight">Alien in Own Land</span></li>
+        <li><span class="highlight">Ascription of Intelligence</span></li>
+        <li><span class="highlight">Pathologizing Cultural Values</span></li>
+        <li><span class="highlight">Second-Class Citizenship</span></li>
+      </ul>
+    </div>
+    <div class="taxonomy-col">
+      <h3 style="color: var(--accent2);">Newly Identified (4)</h3>
+      <p style="font-size: 0.85rem; text-align: center; color: var(--muted); margin-bottom: 0.75rem;">Unique to the Asian American experience</p>
+      <ul>
+        <li><span class="highlight-purple">Denial of Racial Reality</span></li>
+        <li><span class="highlight-purple">Exoticization of Asian Women</span></li>
+        <li><span class="highlight-purple">Invalidation of Interethnic Diff.</span></li>
+        <li><span class="highlight-purple">Invisibility</span></li>
+      </ul>
+    </div>
+    <div class="taxonomy-col">
+      <h3 style="color: var(--muted);">Not Found (4)</h3>
+      <p style="font-size: 0.85rem; text-align: center; color: var(--muted); margin-bottom: 0.75rem;">In original taxonomy but absent here</p>
+      <ul>
+        <li style="color: var(--border);">Color Blindness</li>
+        <li style="color: var(--border);">Assumption of Criminal Status</li>
+        <li style="color: var(--border);">Denial of Individual Racism</li>
+        <li style="color: var(--border);">Myth of Meritocracy</li>
+      </ul>
+    </div>
+  </div>
+  <p class="subtitle" style="margin-top: 1rem; font-size: 0.85rem;">
+    Key insight: Different racial groups may be <span class="highlight">more likely to experience certain classes</span> of microaggressions than others.
+  </p>
+</div>
+
+<!-- SLIDE 15: Limitations -->
+<div class="slide" id="slide-15">
+  <h2>Limitations & Critical Context</h2>
+  <div class="separator"></div>
+  <div class="grid-2" style="margin-top: 1rem;">
+    <div class="card" style="border-top: 3px solid var(--accent3);">
+      <h3 style="color: var(--accent3);">Study Limitations</h3>
+      <ul>
+        <li><span class="highlight-orange">Very small sample</span> (n=10), 9 women / 1 man, mostly mid-20s students at an elite university</li>
+        <li>Selection criteria required participants to <span class="highlight-orange">already agree racism exists</span> against Asian Americans</li>
+        <li>Research team shared biases (believing subtle racism exists and harms Asian Americans); coding done under the senior author who developed the taxonomy being tested</li>
+        <li>"Asian American" spans <span class="highlight-orange">enormous diversity</span> &mdash; a Chinese American grad student at Columbia and a Hmong refugee in the Midwest have very different experiences</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 3px solid var(--accent);">
+      <h3 style="color: var(--accent);">Broader Context</h3>
+      <ul>
+        <li>Part of the early wave of microaggression research &mdash; now both <span class="highlight">influential and contested</span></li>
+        <li>Widely adopted in DEI training and higher education</li>
+        <li>Critics question empirical rigor and the <span class="highlight">unfalsifiability</span> of the framework (denial of a microaggression can itself be classified as one)</li>
+        <li>The <span class="highlight">phenomenological contribution is real</span> &mdash; it documents recurring experiences that resonate with many Asian Americans and pushed the field beyond Black-White framing</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 16: Key Takeaways -->
+<div class="slide" id="slide-16">
+  <h2>Key Takeaways</h2>
+  <div class="separator"></div>
+  <div class="grid-2" style="margin-top: 1rem;">
+    <div class="card" style="border-left: 4px solid var(--accent);">
+      <h3 style="color: var(--accent);">For Understanding</h3>
+      <ul>
+        <li>Microaggressions are <span class="highlight">not minimally harmful</span> &mdash; they produce lasting belittlement, anger, frustration, and alienation</li>
+        <li>Asian Americans face <span class="highlight">qualitatively different</span> forms of subtle racism than other groups</li>
+        <li>The "model minority" myth is itself a form of racial microaggression</li>
+        <li>The ambiguity is the weapon &mdash; the "guessing game" consumes psychic energy</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left: 4px solid var(--success);">
+      <h3 style="color: var(--success);">For Action</h3>
+      <ul>
+        <li><span class="highlight">Prepare responses</span> in advance to reduce rumination after incidents</li>
+        <li><span class="highlight">Be a bystander ally</span> &mdash; silence normalizes microaggressive behavior</li>
+        <li><span class="highlight">Audit systems</span> (grading, service, hiring) for built-in cultural biases</li>
+        <li><span class="highlight">Include Asian Americans</span> explicitly in racial equity conversations</li>
+        <li><span class="highlight">Learn specific ethnicities</span> rather than defaulting to a generic "Asian"</li>
+        <li>Historical literacy &mdash; understanding structural origins reduces destabilizing power</li>
+      </ul>
+    </div>
+  </div>
+  <blockquote style="max-width: 800px; margin-top: 1.25rem;">
+    "The task in the study of subtle and implicit racism is to make the invisible, visible."
+    <br><span style="color: var(--muted); font-size: 0.85rem;">&mdash; Sue (2003)</span>
+  </blockquote>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prev" onclick="go(-1)" disabled>&#9664;</button>
+  <span class="page" id="pageNum">1 / 16</span>
+  <button id="next" onclick="go(1)">&#9654;</button>
+</div>
+<div class="hint">Arrow keys or click to navigate</div>
+
+<script>
+  let cur = 1;
+  const total = document.querySelectorAll('.slide').length;
+
+  function show(n) {
+    document.querySelector('.slide.active').classList.remove('active');
+    document.getElementById('slide-' + n).classList.add('active');
+    document.getElementById('pageNum').textContent = n + ' / ' + total;
+    document.getElementById('prev').disabled = n === 1;
+    document.getElementById('next').disabled = n === total;
+    document.getElementById('progress').style.width = (n / total * 100) + '%';
+    cur = n;
+  }
+
+  function go(d) {
+    const n = cur + d;
+    if (n >= 1 && n <= total) show(n);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    if (e.key === 'Home') { e.preventDefault(); show(1); }
+    if (e.key === 'End') { e.preventDefault(); show(total); }
+  });
+
+  // Touch/swipe support
+  let touchX = 0;
+  document.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) go(diff > 0 ? 1 : -1);
+  });
+
+  show(1);
+</script>
+</body>
+</html>
